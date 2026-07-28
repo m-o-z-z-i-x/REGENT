@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "regent-mcp"
+dynamic = ["version"]
+description = "An MCP server that lets an AI configure an OpenWrt router in plain language and roll back changes that break the connection"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "m-o-z-z-i-x" }]
+keywords = ["mcp", "openwrt", "router", "uci", "ubus", "ssh", "network", "automation"]
+
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: System Administrators",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Networking",
+  "Topic :: System :: Systems Administration"
+]
+
+dependencies = [
+  "fastmcp>=3.0.0",
+  "asyncssh>=2.20.0",
+  "python-dotenv>=1.0.0",
+  "typing-extensions>=4.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.24.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/m-o-z-z-i-x/REGENT"
+Repository = "https://github.com/m-o-z-z-i-x/REGENT"
+Issues = "https://github.com/m-o-z-z-i-x/REGENT/issues"
+
+[project.scripts]
+regent-mcp = "regent.server:main"
+
+[tool.hatch.version]
+path = "regent/metadata.py"
+pattern = "APP_VERSION = \"(?P<version>[^\"]+)\""
+
+[tool.hatch.build.targets.wheel]
+packages = ["regent"]
+
+[tool.hatch.build.targets.sdist]
+include = ["regent", "tests", "README.md", "LICENSE", "pytest.ini", ".env.example"]

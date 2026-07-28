@@ -1,0 +1,15 @@
+# ---> PYTHON
+.pytest_cache
+__pycache__
+.venv
+.env
+
+# ---> PACKAGING
+dist/
+build/
+*.egg-info
+uv.lock
+
+# ---> CUSTOM
+logs/
+keys/
